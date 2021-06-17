@@ -1,0 +1,70 @@
+\documentclass[a4paper, 14pt]{article}
+
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\pgfplotsset{compat=1.9}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{bchart}
+
+
+
+
+\begin{document}
+
+	\renewcommand{\chaptername}{Лабораторная работа}
+	\def\contentsname{Содержание}
+
+	\begin{titlepage}
+		\begin{center}
+			\textsc{<<НАЦИОНАЛЬНЫЙ ИССЛЕДВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО">\\[5mm]
+			Факультет информационных технологий и программирования\\[2mm]
+			Кафедра компьютерных технологий}
+
+			\vfill
+
+			\textbf{ОТЧЁТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №4\\[3mm]
+			Изучение алгоритмов метода Ньютона и его модификаций, в том числе квазиньютоновских методов.
+\\[28mm]
+			}
+		\end{center}
+
+		\hfill
+		\begin{minipage}{.5\textwidth}
+			Выполнили студенты:\\[2mm]
+			Ефимов Сергей Алексеевич\\
+			группа: М3237\\[2mm]
+			Соколов Александр Андреевич\\
+			группа: М3234\\[5mm]
+
+			Проверил:\\[2mm]
+			Свинцов Михаил Викторович
+		\end{minipage}%
+		\vfill
+		\begin{center}
+			г. Санкт-Петербург
+		\end{center}
+	\end{titlepage}
+
+
+	\section*{Постановка задачи}
+	Задача лаборатрной работы  -- научиться реализовывать алгоритмы градиентной оптимизации каждым из следуших способов:
+	\begin{enumerate}
+		\item Метод градиентного спуска
+		\item Метод наискорейшего спуска
+		\item Метод сопряженных градиентов
+	\end{enumerate}
+	Также необходимо оценить как меняется скорость сходимости, если для поиска величины шага использовать различные методы одномерного поиска.
+
+
+\end{document}
