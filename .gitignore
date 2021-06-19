@@ -2,3 +2,5 @@ report/report.aux
 report/report.log
 report/report.synctex.gz
 .idea
+src/cmake-build-debug
+src/.idea
