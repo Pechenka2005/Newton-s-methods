@@ -11,10 +11,11 @@
 class AbstractMethods {
 protected:
     Point slay(std::vector<std::vector<double>> h, std::vector<double> f);
-    double getLearningRate(Function function, Point x, Point y);
+    double getLearningRate(Function function, const Point& x, const Point& y);
     Point mulMatrixPoint(std::vector<std::vector<double>> vector, Point x);
     std::vector<std::vector<double>> nextHessianForPowell(std::vector<std::vector<double>> nowH, const Point& x, const Point& y);
     std::vector<std::vector<double>> nextHessianForBFGS(std::vector<std::vector<double>> nowH, const Point& x, const Point& y);
+    std::vector<double> negateVector(std::vector<double> vector);
 private:
     Point evaluateValueForLR(const Point& x, const Point& y, double value);
     std::vector<std::vector<double>> matrixMulMatrix(std::vector<std::vector<double>> x, std::vector<std::vector<double>> y);

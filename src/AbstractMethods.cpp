@@ -7,52 +7,44 @@
 #include <utility>
 
 Point AbstractMethods::slay(std::vector<std::vector<double>> h, std::vector<double> f) {
-    int n = f.size();
 
-    std::vector<int> realRows(n);
-    for (int i = 0; i < n; i++) {
-        realRows[i] = i;
+    std::vector<int> help(f.size());
+    for (int i = 0; i < f.size(); i++) {
+        help[i] = i;
     }
 
-    for (int row = 0; row < n; row++) {
-        int sel = row;
-        for (int i = row + 1; i < n; i++) {
-            if (std::abs(h[realRows[i]][row]) > std::abs(h[realRows[sel]][row])) {
+    for (int k = 0; k < f.size(); k++) {
+        int sel = k;
+        for (int i = k + 1; i < f.size(); i++) {
+            if (std::abs(h[help[i]][k]) > std::abs(h[help[sel]][k])) {
                 sel = i;
             }
         }
-        int tmp = realRows[sel];
-        realRows[sel] = realRows[row];
-        realRows[row] = tmp;
 
-        tmp = realRows[sel];
-        realRows[sel] = realRows[row];
-        realRows[row] = tmp;
-
-        for (int i = row + 1; i < n; ++i) {
-            double c = h[realRows[i]][row] / h[realRows[row]][row];
-            for (int j = row; j < n; ++j) {
-                h[realRows[i]][j] -= h[realRows[row]][j] * c;
+        for (int i = k + 1; i < f.size(); ++i) {
+            double c = h[help[i]][k] / h[help[k]][k];
+            for (int j = k; j < f.size(); ++j) {
+                h[help[i]][j] -= h[help[k]][j] * c;
             }
-            f[realRows[i]] -= f[realRows[row]] * c;
+            f[help[i]] -= f[help[k]] * c;
         }
     }
 
-    std::vector<double> result(n);
-    for (int i = n - 1; i >= 0; i--) {
+    std::vector<double> result(f.size());
+    for (int i = (int)f.size() - 1; i >= 0; i--) {
         double sum = 0;
-        for (int j = n - 1; j > i; j--) {
-            sum += h[realRows[i]][j] * result[j];
+        for (int j = (int)f.size() - 1; j > i; j--) {
+            sum += h[help[i]][j] * result[j];
         }
-        result[i] = (f[realRows[i]] - sum) / h[realRows[i]][i];
+        result[i] = (f[help[i]] - sum) / h[help[i]][i];
     }
     return Point(result);
 }
 
-double AbstractMethods::getLearningRate(Function function, Point x, Point y) {
+double AbstractMethods::getLearningRate(Function function, const Point& x, const Point& y) {
     double phi = 2 - (1 + std::sqrt(5)) / 2;
     double eps = 0.000001;
-    double a = -1000, b = 1000, x1, x2, f1, f2; //todo как выбирать a и b?
+    double a = -1000, b = 1000, x1, x2, f1, f2;
     x1 = a + phi * (b - a);
     x2 = b - phi * (b - a);
     f1 = function.getValue(evaluateValueForLR(x, y, x1));
@@ -158,4 +150,11 @@ AbstractMethods::matrixMulMatrix(std::vector<std::vector<double>> x, std::vector
     }
 
     return ans;
+}
+
+std::vector<double> AbstractMethods::negateVector(std::vector<double> vector) {
+    for (auto & item : vector) {
+        item *= -1;
+    }
+    return vector;
 }
