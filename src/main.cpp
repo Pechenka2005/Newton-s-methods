@@ -8,8 +8,6 @@ using namespace std;
 #include "Function.h"
 
 int main() {
-    cout << "hui" << endl;
-
     Function first;
     first.setFunction([](Point x){
         return x.get(0) * x.get(0) + x.get(1) * x.get(1) - 1.2 * x.get(0) * x.get(1);
