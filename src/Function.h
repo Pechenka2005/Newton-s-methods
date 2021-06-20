@@ -5,15 +5,26 @@
 #ifndef SRC_FUNCTION_H
 #define SRC_FUNCTION_H
 
+#include <functional>
 #include <vector>
 #include "Point.h"
-class Function {
-private:
 
+class Function {
 public:
-    std::vector<std::vector<double>> getHessian(Point x);
-    std::vector<double> getGradient(Point x);
-    double getValue(Point x);
+    Function();
+
+    void setFunction(const std::function<double(Point)> &function);
+
+    void setHessian(const std::function<std::vector<std::vector<double>>(Point)> &hessian);
+
+    void setGradient(const std::function<std::vector<double>(Point)> &gradient);
+
+    std::function<double(Point)> function;
+    std::function<std::vector<std::vector<double>>(Point)> hessian;
+    std::function<std::vector<double>(Point)> gradient;
+    std::vector<std::vector<double>> getHessian(const Point& x);
+    std::vector<double> getGradient(const Point& x);
+    double getValue(const Point& x);
 };
 
 

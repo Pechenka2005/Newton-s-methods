@@ -11,7 +11,7 @@ Point OptimisationNewton::findMin(const Point &x, Function function, double eps)
 
     while(scalar.getValue() >= eps) {
         countIteration++;
-        y = slay(function.getHessian(x), function.getGradient(x));
+        y = slay(function.getHessian(x), negateVector(function.getGradient(x)));
         double learningRate = getLearningRate(function, x, y);
         scalar = scalarMul(y, learningRate);
         x += scalar;

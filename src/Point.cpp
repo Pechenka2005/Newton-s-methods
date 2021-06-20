@@ -78,3 +78,7 @@ Point operator-(Point x, Point y) {
 
     return Point(result);
 }
+
+double Point::get(int index) {
+    return coord[index];
+}

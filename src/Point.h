@@ -19,6 +19,7 @@ public:
     Point scalarMul(Point x, double value);
     double getValue() const;
     Point negate();
+    double get(int index);
     friend Point operator+(Point x, Point y);
     friend Point operator+=(Point x, Point y);
     friend double operator*(Point x, Point y);
